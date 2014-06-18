@@ -57,7 +57,6 @@
 		    _h = setInterval(function(){
 		    	_c = _c >= 4 ? 0 : _c;
 			    change(_c);
-			    _c++;
 		    }, 2000);
 		}
 		
@@ -65,6 +64,7 @@
 		function change(i){
 		    $('#play li').removeClass("liHover").eq(i).addClass("liHover");
 		   	$("#pic div").not(i).fadeOut("slow").eq(i).fadeIn("slow");
+		   	_c++;
 		}
 
 	    play();
