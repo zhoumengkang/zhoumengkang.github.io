@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head lang="zh-cn">
+    <meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+	.lihoveron{
+		color: red;
+	}
+	#pic{position: relative;top: 100px;}
+	#pic div{
+		position: absolute;
+		height: 300px;
+		width: 640px;
+		top: 0px;
+		left: 0px;
+	}
+	.div1{
+		background-color: #F5E8A6;z-index: 1;
+	}
+	.div2{
+		background-color: #90A8F6;
+	}
+	.div3{
+		background-color: #7DDF9D;
+	}
+	.div4{
+		background-color: #D68585;
+	}
+	#play li{
+		cursor: pointer;
+	}
+	</style>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var _c = 1,_h = null;
+
+		//自动播放
+		function play(){
+		    _h = setInterval(function(){
+		    	_c = _c >= 4 ? 0 : _c;
+			    change(_c);
+			    _c++;
+		    }, 2000);
+		    console.log("play");
+		}
+		
+		//切换
+		function change(i){
+		    $('#play li').removeClass("lihoveron").eq(i).addClass("lihoveron");
+		   	$("#pic div").not(i).fadeOut("slow").eq(i).fadeIn("slow");
+		}
+
+	    play();
+	 
+	    $('#play  li').click(function(){
+	        i = $("#play li").index($(this));
+	        clearInterval(_h);
+	        _c = i;
+	        change(i);
+	    })
+
+	    $("#pic div").hover(function(){
+			clearInterval(_h)
+		},function(){
+			play();
+		});
+	})
+	</script>
+</head>
+<body>
+<div class="img_switch">
+	<div class="img_switch_content" id="pic">
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+		<div class="div4"></div>
+	</div>
+	<div class="number_nav">
+ 		<ul id="play">
+ 			<li class="lihoveron">1</li>
+			<li class="">2</li>
+			<li class="">3</li> 
+			<li class="">4</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>
